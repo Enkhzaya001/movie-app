@@ -39,7 +39,7 @@ export const MovieDetailSimilar = ({
           </Button>
         </Link>
       </div>
-      <div className="hidden md:block md:flex md:gap-10  grid  md:grid-cols-5">
+      <div className="hidden md:flex gap-10  grid-cols-5">
         {similarMovieFirst5 ? (
           similarMovieFirst5.map((el, index) => (
             <div key={index}>
@@ -61,7 +61,7 @@ export const MovieDetailSimilar = ({
           <p className="text-gray-500 text-center">No results found.</p>
         )}
       </div>
-      <div className=" md:hidden flex gap-10 grid grid-cols-2">
+      <div className=" md:hidden  gap-10 grid grid-cols-2">
         {similarMovieFirst2 ? (
           similarMovieFirst2.map((el, index) => (
             <div key={index}>

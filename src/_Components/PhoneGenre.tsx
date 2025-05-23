@@ -45,7 +45,7 @@ export const PhoneGenre = ({
           <ChevronDown />
         </Button>
         <div className="absolute z-1 mt-[400px]">
-          {isOpenGenre && (
+          {isOpenGenre && !search && (
             <SearchByGenre
               handleClick={handleClick}
               setIsOpenGenre={setIsOpenGenre}

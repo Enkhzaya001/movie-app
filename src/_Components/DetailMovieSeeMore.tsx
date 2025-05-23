@@ -11,11 +11,11 @@ export const DetailMovieSeeMore = ({
   similarMovieSeeMore,
 }: SimilarMovieProps) => {
   return (
-    <div>
+    <div className="p-5">
       <div className="flex items-center justify-between p-2">
         <p className="text-xl font-semibold">More like this </p>
       </div>
-      <div className="hidden  md:flex gap-10  md:grid  md:grid-cols-5">
+      <div className="hidden   gap-10  md:grid  md:grid-cols-5">
         {similarMovieSeeMore ? (
           similarMovieSeeMore.map((el, index) => (
             <div key={index}>
@@ -37,7 +37,7 @@ export const DetailMovieSeeMore = ({
           <p className="text-gray-500 text-center">No results found.</p>
         )}
       </div>
-      <div className=" md:hidden flex gap-10 grid grid-cols-2">
+      <div className=" md:hidden gap-10 grid grid-cols-2">
         {similarMovieSeeMore ? (
           similarMovieSeeMore.map((el, index) => (
             <div key={index}>
