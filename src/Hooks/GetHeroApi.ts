@@ -9,6 +9,6 @@ export const getHeroApi = async () => {
         },
         }
     )
-    // console.log(result.data)
+    console.log(result, "my result")
     return result?.data
 }

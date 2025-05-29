@@ -1,6 +1,9 @@
+"use client";
 import { DetailMovieHero } from "./DetailMovieHero";
 import { DetailMovieInfo } from "./DetailMovieInfo";
 import { MovieDetailSimilar } from "./MovieDetailSimilar";
+import { useState, useEffect } from "react";
+import { MovieDetailsSkeleton } from "./DetailLoader";
 
 export interface Movie {
   id: number;
@@ -24,7 +27,6 @@ interface DetailProps {
   similarMovieFirst5: Movie[];
   similarMovieAll: Movie[];
   movieDetail: Movie;
-  movieTrailer: Movie;
   teamInfo: Movie;
 }
 
@@ -33,9 +35,23 @@ export const MovieDetails = ({
   similarMovieFirst2,
   similarMovieAll,
   movieDetail,
-  movieTrailer,
   teamInfo,
 }: DetailProps) => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (movieDetail && movieDetail.id && teamInfo) {
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [movieDetail, teamInfo]);
+
+  if (loading) {
+    return <MovieDetailsSkeleton />;
+  }
+
   return (
     <div className="md:ml-[180px] md:mr-[180px] m-[20px]">
       <DetailMovieHero movieDetail={movieDetail} />
@@ -49,3 +65,13 @@ export const MovieDetails = ({
     </div>
   );
 };
+
+// const isLoading =
+//     !movieDetail ||
+//     !movieDetail.id ||
+//     !teamInfo ||
+//     similarMovieAll.length === 0;
+
+//   if (isLoading) {
+//     return <DetailLoading />;
+//   }

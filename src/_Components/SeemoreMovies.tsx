@@ -32,7 +32,7 @@ export const MovieSeemore = ({ title, movie }: MoviesProps) => {
   };
 
   // Pagination
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
   const totalPages = Math.ceil(movie.length / itemsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
 

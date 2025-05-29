@@ -11,21 +11,17 @@ interface PageProps {
 }
 const DetailPage = async ({ params }: PageProps) => {
   const { id } = params;
-  const [similarMovie, movieDetail, movieTrailer, teamInfo] = await Promise.all(
-    [
-      getSimilarMovieApi(id),
-      getMovieDetaildApi(id),
-      getMovieTrailer(id),
-      getTeamInfApi(id),
-    ]
-  );
+  const [similarMovie, movieDetail, teamInfo] = await Promise.all([
+    getSimilarMovieApi(id),
+    getMovieDetaildApi(id),
+    getTeamInfApi(id),
+  ]);
   const similarMovieFirst5 = similarMovie.results?.splice(0, 5);
   const similarMovieFirst2 = similarMovie.results?.splice(0, 2);
   const similarMovieAll = similarMovie.results;
 
   console.log(movieDetail, "detail");
   console.log(similarMovie, "similar");
-  console.log(movieTrailer, "trailer");
   console.log(teamInfo, "team info");
   return (
     <MovieDetails
@@ -33,7 +29,6 @@ const DetailPage = async ({ params }: PageProps) => {
       similarMovieFirst5={similarMovieFirst5}
       similarMovieAll={similarMovieAll}
       movieDetail={movieDetail}
-      movieTrailer={movieTrailer}
       teamInfo={teamInfo}
     />
   );

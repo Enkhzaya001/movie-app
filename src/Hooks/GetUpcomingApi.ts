@@ -9,6 +9,6 @@ export const getUpcomingApi = async () => {
         },
         }
     )
-    console.log(result.data)
+    console.log(result.data, "upcoming")
     return result?.data
 }

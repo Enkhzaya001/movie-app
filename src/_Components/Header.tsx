@@ -2,14 +2,12 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTheme } from "next-themes";
-import { MenuList } from "./Menulist";
 import { useState, useEffect } from "react";
 import { PhoneGenre } from "./PhoneGenre";
 import { Film, Moon, Search, ChevronDown, Sun } from "lucide-react";
 import Link from "next/link";
 import { getMovieSearchdApi } from "@/Hooks/GetMovieSearch";
 import { SearchResult } from "./SearchResult";
-import { Movie } from "./MovieDetail";
 import { Loader } from "lucide-react";
 import { SearchByGenre } from "./SearchByGenre";
 
@@ -20,7 +18,7 @@ export const Header = () => {
   const [phoneGenreSearch, setPhoneGenreSearch] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
   const [searchResult, setSearchResult] = useState<any>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const searchHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
@@ -34,7 +32,9 @@ export const Header = () => {
       console.log(searchResult, "hppp");
     };
     fetchWeather();
-    setLoading(false);
+    setTimeout(() => {
+      setLoading(false);
+    }, 800);
   }, [search]);
 
   const handleClick = () => {
@@ -86,21 +86,21 @@ export const Header = () => {
           />
 
           <div className=" absolute z-10 mt-2">
-            {/* {loading && (
-              <div className="flex justify-center items-center p-4">
-                <Loader />
+            {loading ? (
+              <div className=" flex w-[400px] h-[95px] bg-[#f3f4f6] justify-center items-center p-4 rounded-xs">
+                <Loading />
               </div>
-            )} */}
-
-            {search && searchResult.length != 0 && (
-              <SearchResult
-                searchResult={searchResult}
-                search={search}
-                setSearch={setSearch}
-              />
+            ) : (
+              search &&
+              searchResult.length != 0 && (
+                <SearchResult
+                  searchResult={searchResult}
+                  search={search}
+                  setSearch={setSearch}
+                />
+              )
             )}
-
-            {search && searchResult.length === 0 && (
+            {!loading && search && searchResult.length === 0 && (
               <p
                 className={`w-[400px] h-[95px]  flex items-center justify-center rounded-xs ${
                   isDarkThemActive
@@ -152,10 +152,10 @@ export const Header = () => {
   );
 };
 
-// const Loading = () => {
-//   return (
-//     <div className="animate-spin">
-//       <Loader />
-//     </div>
-//   );
-// };
+const Loading = () => {
+  return (
+    <div className="animate-spin text-[#4338CA]">
+      <Loader size={32} />
+    </div>
+  );
+};

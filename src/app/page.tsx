@@ -36,7 +36,7 @@ export default function Home() {
       <MovieList title={"Popular"} movie={popularMovies} />
       <MovieList title={"TopRated"} movie={topRatedMovies} />
       {/* <MovieDetailsSkeleton /> */}
-      {/* <Loader /> */}
+      <Loader />
     </div>
   );
 }

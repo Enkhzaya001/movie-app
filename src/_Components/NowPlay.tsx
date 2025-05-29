@@ -25,7 +25,7 @@ export const NowPlay = ({ title, vote, view, setShowTrailer }: PropsType) => {
         <Image src={"/star.png"} alt="star" width={28} height={28} />
         <p className="p-1">{vote.toFixed(1)}/10</p>
       </div>
-      <p className="line-clamp-3 backdrop-blur-md">{view}</p>
+      <p className="line-clamp-3 backdrop-blur-md rounded-sm">{view}</p>
       <Button
         onClick={() => setShowTrailer(true)}
         className={`${

@@ -37,30 +37,3 @@ export const MovieDetailsSkeleton = () => {
     </div>
   );
 };
-
-// import React, { useEffect, useState } from 'react';
-// import MovieDetailsSkeleton from './MovieDetailsSkeleton';
-
-// const MovieDetails = () => {
-//   const [loading, setLoading] = useState(true);
-//   const [movieData, setMovieData] = useState(null);
-
-//   useEffect(() => {
-//     setTimeout(() => {
-//       // Симуляци: ачаалалт дууссан
-//       setMovieData({ title: "Wicked" });
-//       setLoading(false);
-//     }, 2000); // 2 секунд хүлээнэ
-//   }, []);
-
-//   if (loading) return <MovieDetailsSkeleton />;
-
-//   return (
-//     <div className="p-6">
-//       <h1 className="text-3xl font-bold">{movieData.title}</h1>
-//       {/* Жинхэнэ контент энд орно */}
-//     </div>
-//   );
-// };
-
-// export default MovieDetails;

@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
-import { useTheme } from "next-themes";
 import { getHeroApi } from "@/Hooks/GetHeroApi";
 import { NowPlay } from "./NowPlay";
 import { MobileNowPlay } from "./mobileNowPlay";
@@ -13,7 +12,6 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-  type CarouselApi,
 } from "@/components/ui/carousel";
 
 export type UpcomingMovies = {
@@ -29,19 +27,25 @@ export function CarouselBtn() {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
   const [getHero, setGetHero] = useState<UpcomingMovies[]>([]);
   const [showTrailer, setShowTrailer] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const nowPlaying = async () => {
+      setIsLoading(true);
       const response = await getHeroApi();
       const firstFive = response?.results.splice(0, 5);
       setGetHero(firstFive);
+
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
     };
     nowPlaying();
   }, []);
 
-  console.log(getHero);
-  const { setTheme, resolvedTheme } = useTheme();
-  const isDarkThemActive = resolvedTheme === "dark";
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="mx-auto mt-[20px] w-full h-[600px]">
@@ -55,12 +59,12 @@ export function CarouselBtn() {
           {getHero.map((el, index) => (
             <CarouselItem
               key={index}
-              className=" flex flex-col md:flex md:items-center md:justify-center"
+              className="flex flex-col md:flex md:items-center md:justify-center"
             >
-              <div className=" relative w-full h-[375px] md:h-[600px]  p-0">
+              <div className="relative w-full h-[375px] md:h-[600px] p-0">
                 <Image
                   src={`https://image.tmdb.org/t/p/original/${el.backdrop_path}`}
-                  alt="carsouselImage"
+                  alt="carouselImage"
                   fill
                   objectFit="cover"
                 />
@@ -71,7 +75,7 @@ export function CarouselBtn() {
                   view={el.overview}
                 />
                 {showTrailer && (
-                  <div className="absolute w-full h-full   z-10 bg-black bg-opacity-90 flex items-center justify-center rounded-xl">
+                  <div className="absolute w-full h-full z-10 bg-black bg-opacity-90 flex items-center justify-center rounded-xl">
                     <div>
                       <button
                         onClick={() => setShowTrailer(false)}
@@ -84,7 +88,7 @@ export function CarouselBtn() {
                   </div>
                 )}
               </div>
-              <div className=" relative flex space-between pl-1">
+              <div className="relative flex space-between pl-1">
                 <MobileNowPlay
                   setShowTrailer={setShowTrailer}
                   title={el.title}
@@ -104,6 +108,14 @@ export function CarouselBtn() {
           className="absolute top-1/2 right-3 z-2"
         />
       </Carousel>
+    </div>
+  );
+}
+
+export default function Loader() {
+  return (
+    <div className="w-full flex justify-center items-center py-20">
+      <div className="w-full h-[600px] bg-gray-300 rounded-lg animate-pulse mb-8"></div>
     </div>
   );
 }
