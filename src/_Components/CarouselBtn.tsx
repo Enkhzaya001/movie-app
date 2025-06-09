@@ -5,7 +5,7 @@ import Image from "next/image";
 import { getHeroApi } from "@/Hooks/GetHeroApi";
 import { NowPlay } from "./NowPlay";
 import { MobileNowPlay } from "./mobileNowPlay";
-import { TrailerPlayer } from "@/components/MovieTrailer";
+import { TrailerPlayer } from "@/_Components/MovieTrailer";
 import {
   Carousel,
   CarouselContent,

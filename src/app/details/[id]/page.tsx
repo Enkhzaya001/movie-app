@@ -1,7 +1,6 @@
 import { MovieDetails } from "@/_Components/MovieDetail";
 import { getSimilarMovieApi } from "@/Hooks/GetSimilarMovieApi";
 import { getMovieDetaildApi } from "@/Hooks/GetMovieDetailApi";
-import { getMovieTrailer } from "@/Hooks/GetMovieTrailer";
 import { getTeamInfApi } from "@/Hooks/GetTeamInfApi";
 
 interface PageProps {
@@ -9,7 +8,7 @@ interface PageProps {
     id: string;
   };
 }
-const DetailPage = async ({ params }: PageProps) => {
+const Page = async ({ params }: PageProps) => {
   const { id } = params;
   const [similarMovie, movieDetail, teamInfo] = await Promise.all([
     getSimilarMovieApi(id),
@@ -34,4 +33,4 @@ const DetailPage = async ({ params }: PageProps) => {
   );
 };
 
-export default DetailPage;
+export default Page;

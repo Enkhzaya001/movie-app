@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Play } from "lucide-react";
 import { Movie } from "./MovieDetail";
-import { TrailerPlayer } from "@/components/MovieTrailer";
+import { TrailerPlayer } from "@/_Components/MovieTrailer";
 
 interface DetailHeroProps {
   movieDetail: Movie;
