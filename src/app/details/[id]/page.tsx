@@ -2,14 +2,15 @@ import { MovieDetails } from "@/_Components/MovieDetail";
 import { getSimilarMovieApi } from "@/Hooks/GetSimilarMovieApi";
 import { getMovieDetaildApi } from "@/Hooks/GetMovieDetailApi";
 import { getTeamInfApi } from "@/Hooks/GetTeamInfApi";
+import { FC } from "react";
 
-interface PageProps {
-  params: {
+type PageParams = {
+  params: Promise<{
     id: string;
-  };
-}
-const Page = async ({ params }: PageProps) => {
-  const { id } = params;
+  }>;
+};
+const Page = async ({ params }: PageParams) => {
+  const { id } = await params;
   const [similarMovie, movieDetail, teamInfo] = await Promise.all([
     getSimilarMovieApi(id),
     getMovieDetaildApi(id),

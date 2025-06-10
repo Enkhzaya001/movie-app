@@ -4,29 +4,29 @@ import { Genre } from "./_components/Genre";
 import { useState, useEffect } from "react";
 import { Movie } from "@/_Components/MovieDetail";
 
-interface PageProps {
-  params: {
-    genreIds: string;
-  };
-}
-const GenrePage = ({ params }: PageProps) => {
-  const { genreIds } = params;
+type PageParams = {
+  params: Promise<{
+    id: string;
+  }>;
+};
+const GenrePage = async ({ params }: PageParams) => {
+  const { id } = await params;
   const [movies, setMovies] = useState<Movie[]>([]);
   const page = 1;
 
   useEffect(() => {
     const fetchMoviesByGenre = async () => {
-      const res = await getFilteredGenre(genreIds, page);
+      const res = await getFilteredGenre(id, page);
       console.log("Fetched movies: ", res);
       setMovies(res.results);
     };
 
     fetchMoviesByGenre();
-  }, [genreIds]);
+  }, [id]);
 
   return (
     <>
-      <Genre movies={movies} id={genreIds} />
+      <Genre movies={movies} id={id} />
     </>
   );
 };
