@@ -1,13 +1,10 @@
 "use client";
 import { CarouselBtn } from "@/_Components/CarouselBtn";
 import { MovieList } from "@/_Components/MovieList";
-import { Loader } from "@/_Components/Loader";
 import { getUpcomingApi } from "@/Hooks/GetUpcomingApi";
 import { getPopularMovieApi } from "@/Hooks/GetPopularMovieApi";
 import { getRatedApi } from "@/Hooks/GetRatedApi";
 import { useState, useEffect } from "react";
-import { MovieSeemore } from "@/_Components/SeemoreMovies";
-import { MovieDetailsSkeleton } from "@/_Components/DetailLoader";
 
 export default function Home() {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -35,8 +32,6 @@ export default function Home() {
       <MovieList title={"Upcoming"} movie={upcomingMovies} />
       <MovieList title={"Popular"} movie={popularMovies} />
       <MovieList title={"TopRated"} movie={topRatedMovies} />
-      {/* <MovieDetailsSkeleton /> */}
-      <Loader />
     </div>
   );
 }
