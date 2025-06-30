@@ -32,8 +32,11 @@ export const SearchResult = ({
       }  `}
     >
       {searchResultFirst5.map((result, index) => (
-        <div className="flex justify-between items-center pl-2 pr-2 border border-gray-100">
-          <div key={index} className="flex mt-[3px] mb-[10px] gap-1">
+        <div
+          key={index}
+          className="flex justify-between items-center pl-2 pr-2 border border-gray-100"
+        >
+          <div className="flex mt-[3px] mb-[10px] gap-1">
             <div className="relative items-center w-[50px] h-[100px] md:w-[80px]">
               <Image
                 src={`https://image.tmdb.org/t/p/original/${result.poster_path}`}

@@ -18,19 +18,19 @@ interface isOpenGenrePros {
 }
 
 export const SearchByGenre = ({
-  handleClick,
   setIsOpenGenre,
   isOpenGenre,
 }: isOpenGenrePros) => {
   const closeGenre = () => {
     if (setIsOpenGenre && typeof isOpenGenre === "boolean") {
       setIsOpenGenre(!isOpenGenre);
+      console.log("haha");
     }
   };
   const { setTheme, resolvedTheme } = useTheme();
   const isDarkThemActive = resolvedTheme === "dark";
   const [genres, setGenres] = useState<Genre[]>([]);
-  console.log(genres, "lllllll");
+  // console.log(genres, "lllllll");
   useEffect(() => {
     const fetchGenres = async () => {
       const genre = await getSearchByGenre();
@@ -50,10 +50,10 @@ export const SearchByGenre = ({
       </div>
       <div className="flex gap-3 w-full flex-wrap">
         {genres.map((el, index) => (
-          <Link href={`/genre/${el.id}`}>
+          <Link key={index} href={`/genre/${el?.id}`}>
             <div key={index}>
               <Button onClick={closeGenre} className="h-[25px]">
-                {el.name} <ChevronRight />
+                {el?.name} <ChevronRight />
               </Button>
             </div>
           </Link>

@@ -65,8 +65,8 @@ export const PhoneGenre = ({
             color={"#90a4ae"}
             className=" absolute bottom-[5px] p-1 z-10"
           />
-          <div className="md:hidden flex absolute  justify-center  ml-[20px] z-10">
-            {search && (
+          <div className="flex absolute  justify-center  ml-[20px] z-10">
+            {search && searchResult.length != 0 && (
               <SearchResult
                 setSearch={setSearch}
                 search={search}

@@ -6,7 +6,7 @@ import { getSearchByGenre } from "@/Hooks/GetSearchByGenre";
 
 type MovieProps = {
   movies: Movie[];
-  id: string;
+  id?: string;
 };
 interface Genre {
   id: number;

@@ -3,21 +3,20 @@ import { getFilteredGenre } from "@/Hooks/GetFilteredGenre";
 import { Genre } from "./_components/Genre";
 import { useState, useEffect } from "react";
 import { Movie } from "@/_Components/MovieDetail";
+import { useParams } from "next/navigation";
 
-type PageParams = {
-  params: Promise<{
-    id: string;
-  }>;
-};
-const GenrePage = async ({ params }: PageParams) => {
-  const { id } = await params;
+const GenrePage = () => {
+  // const { id } = await params;
+  const params = useParams();
+  const id = params.id;
+
   const [movies, setMovies] = useState<Movie[]>([]);
   const page = 1;
-
+  console.log(movies, "lop");
   useEffect(() => {
     const fetchMoviesByGenre = async () => {
-      const res = await getFilteredGenre(id, page);
-      console.log("Fetched movies: ", res);
+      const res = await getFilteredGenre(id?.toString(), page);
+      console.log(res, "kino");
       setMovies(res.results);
     };
 
@@ -26,7 +25,7 @@ const GenrePage = async ({ params }: PageParams) => {
 
   return (
     <>
-      <Genre movies={movies} id={id} />
+      <Genre movies={movies} id={id?.toString()} />
     </>
   );
 };

@@ -41,6 +41,7 @@ export const Header = () => {
     setIsOpenGenre(!isOpenGenre);
   };
 
+  console.log(isOpenGenre);
   const handleSearch = () => {
     setPhoneGenreSearch(!phoneGenreSearch);
   };
@@ -84,22 +85,23 @@ export const Header = () => {
             placeholder="Search"
             className="hidden md:flex w-[379px] h-[30px] outline-none px-[30px] border border-[#90a4ae]"
           />
-
           <div className=" absolute z-10 mt-2">
-            {loading ? (
-              <div className=" flex w-[400px] h-[95px] bg-[#f3f4f6] justify-center items-center p-4 rounded-xs">
-                <Loading />
-              </div>
-            ) : (
-              search &&
-              searchResult.length != 0 && (
-                <SearchResult
-                  searchResult={searchResult}
-                  search={search}
-                  setSearch={setSearch}
-                />
-              )
-            )}
+            <div className="hidden md:flex">
+              {loading ? (
+                <div className=" hidden md:flex  w-[400px] h-[95px] bg-[#f3f4f6] justify-center items-center p-4 rounded-xs">
+                  <Loading />
+                </div>
+              ) : (
+                search &&
+                searchResult.length != 0 && (
+                  <SearchResult
+                    searchResult={searchResult}
+                    search={search}
+                    setSearch={setSearch}
+                  />
+                )
+              )}
+            </div>
             {!loading && search && searchResult.length === 0 && (
               <p
                 className={`w-[400px] h-[95px]  flex items-center justify-center rounded-xs ${
@@ -124,7 +126,7 @@ export const Header = () => {
           onClick={handleSearch}
           size={22}
           color={"#90a4ae"}
-          className={`flex md:hidden absolute right-[50px] bg-white rounded-sm w-[36px] h-[36px] border border-[#F3F4F6] p-2 ${
+          className={` absolute right-[50px] bg-white rounded-sm w-[36px] h-[36px] border border-[#F3F4F6] p-2 ${
             phoneGenreSearch ? "hidden" : "flex"
           }`}
         />
