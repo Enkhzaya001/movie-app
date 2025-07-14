@@ -57,7 +57,7 @@ export const Genre = ({ movies, id }: MovieProps) => {
               />
               <p className="mt-2 font-semibold">{movie.title}</p>
               <p className="text-sm text-gray-500">
-                ⭐ {movie.vote_average}/10
+                ⭐ {movie.vote_average.toFixed(1)}
               </p>
             </div>
           ))}

@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, ChevronDown } from "lucide-react";
 import { useState } from "react";
-import { MenuList } from "./Menulist";
 import { Dispatch } from "react";
 import { Movie } from "./MovieDetail";
 import { SearchResult } from "./SearchResult";

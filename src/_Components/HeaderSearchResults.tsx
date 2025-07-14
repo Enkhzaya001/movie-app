@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { MovieTitle } from "./MovieTitle";
 import Link from "next/link";
-import { MenuList } from "./Menulist";
 import { SearchByGenre } from "./SearchByGenre";
 
 interface PropsType {
